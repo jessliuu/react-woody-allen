@@ -15,15 +15,15 @@ function Movie(props) {
 
   return (
     <>
-      <Col className="d-flex justify-content-center">
+      <Col className="d-flex justify-content-center ">
         <Card
           style={{ width: "18rem", border: "none" }}
-          className="shadow-sm p-3 mb-5 bg-white rounded"
+          className="shadow-sm p-3 mb-5 bg-white rounded d-flex justify-content-between"
         >
-          <Link to={title}>
+          <Link to={title} state={info}>
             <Card.Img variant="top" src={image} />
           </Link>
-          <Card.Title>
+          <Card.Title style={{ fontWeight: 200, paddingTop: 5 }}>
             {title} ({year})
           </Card.Title>
         </Card>
