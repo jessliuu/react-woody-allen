@@ -1,9 +1,10 @@
 import React from "react";
 import { Card, Col, Button } from "react-bootstrap";
-import MoreComponent from "./MoreComponent";
 import { Link } from "react-router-dom";
 
 function Movie(props) {
+  // console.log(props);
+
   const info = props.info;
   const title = props.info.original_title;
   const releaseDate = props.info.release_date;
@@ -13,19 +14,21 @@ function Movie(props) {
   //   const style = { color: "red", backgroundColor: "blue"  };
 
   return (
-    <Col className="d-flex justify-content-center">
-      <Card
-        style={{ width: "18rem", border: "none" }}
-        className="shadow-sm p-3 mb-5 bg-white rounded"
-      >
-        <Link to={`${title}`}>
-          <Card.Img variant="top" src={image} />
-        </Link>
-        <Card.Title>
-          {title} ({year})
-        </Card.Title>
-      </Card>
-    </Col>
+    <>
+      <Col className="d-flex justify-content-center">
+        <Card
+          style={{ width: "18rem", border: "none" }}
+          className="shadow-sm p-3 mb-5 bg-white rounded"
+        >
+          <Link to={title}>
+            <Card.Img variant="top" src={image} />
+          </Link>
+          <Card.Title>
+            {title} ({year})
+          </Card.Title>
+        </Card>
+      </Col>
+    </>
   );
 }
 

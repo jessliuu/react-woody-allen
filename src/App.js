@@ -5,7 +5,9 @@ import Discuss from "./Views/Discuss.js";
 import Browse from "./Views/Browse.js";
 import LogIn from "./Views/LogIn.js";
 import NoMatch from "./Views/NoMatch.js";
-import More from "./Components/MoreComponent.js";
+import More from "./Views/More.js";
+import Register from "./Views/Register.js";
+
 // import Movies from "./Components/Movies";
 // import Navigation from "./Components/Navbar";
 
@@ -22,6 +24,7 @@ function App() {
         <Route path="/browse" element={<Browse />} />
         <Route path="/browse/:title" element={<More />} />
         <Route path="/login" element={<LogIn />} />
+        <Route path="/register" element={<Register />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </div>

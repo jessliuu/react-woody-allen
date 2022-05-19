@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Movie from "./Movie";
-import MoreComponent from "./MoreComponent";
 import { Row, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
