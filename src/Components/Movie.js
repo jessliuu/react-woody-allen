@@ -1,7 +1,10 @@
 import React from "react";
-import { Card, Col } from "react-bootstrap";
+import { Card, Col, Button } from "react-bootstrap";
+import MoreComponent from "./MoreComponent";
+import { Link } from "react-router-dom";
 
 function Movie(props) {
+  const info = props.info;
   const title = props.info.original_title;
   const releaseDate = props.info.release_date;
   const year = releaseDate.slice(0, 4);
@@ -11,12 +14,16 @@ function Movie(props) {
 
   return (
     <Col className="d-flex justify-content-center">
-      <Card style={{ width: "18rem", border: "none" }}>
-        <Card.Img variant="top" src={image} />
+      <Card
+        style={{ width: "18rem", border: "none" }}
+        className="shadow-sm p-3 mb-5 bg-white rounded"
+      >
+        <Link to={`${title}`}>
+          <Card.Img variant="top" src={image} />
+        </Link>
         <Card.Title>
           {title} ({year})
         </Card.Title>
-        {/* <Card.Title style={style}>{title}</Card.Title> */}
       </Card>
     </Col>
   );

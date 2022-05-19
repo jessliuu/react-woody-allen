@@ -5,10 +5,11 @@ import { Button } from "react-bootstrap";
 function NoMatch() {
   return (
     <div>
-      <p>Oops, page not found!</p>
-      <Button>
-        <Link to="/browse">Browse again</Link>
-      </Button>
+      <h2>Oops, page not found!</h2>
+
+      <Link className="btn btn-outline-light btn-lg" role="button" to="/browse">
+        BROWSE AGAIN
+      </Link>
     </div>
   );
 }

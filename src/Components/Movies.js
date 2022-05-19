@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Movie from "./Movie";
-import { Row } from "react-bootstrap";
+import MoreComponent from "./MoreComponent";
+import { Row, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Movies = () => {
   const [movies, setMovies] = useState();
@@ -39,7 +41,7 @@ const Movies = () => {
 
   return (
     <>
-      <Row className="g-4 " xs={1} md={4}>
+      <Row className="gx-0 gy-0 " xs={1} md={4}>
         {movies &&
           movies.map((movie) => {
             // const { original_title, id  } = movie;

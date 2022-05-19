@@ -5,7 +5,7 @@ import Discuss from "./Views/Discuss.js";
 import Browse from "./Views/Browse.js";
 import LogIn from "./Views/LogIn.js";
 import NoMatch from "./Views/NoMatch.js";
-import More from "./Views/More.js";
+import More from "./Components/MoreComponent.js";
 // import Movies from "./Components/Movies";
 // import Navigation from "./Components/Navbar";
 
