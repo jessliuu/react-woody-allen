@@ -9,15 +9,14 @@ import More from "./Views/More.js";
 import Register from "./Views/Register.js";
 
 // import Movies from "./Components/Movies";
-// import Navigation from "./Components/Navbar";
+import Navigation from "./Components/Navbar/Navbar.js";
 
 function App() {
   // <Browse />;
 
   return (
     <div className="App">
-      {/* <Navigation />
-      <Movies /> */}
+      <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/discuss" element={<Discuss />} />

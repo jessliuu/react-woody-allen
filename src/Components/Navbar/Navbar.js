@@ -11,7 +11,7 @@ function Navigation() {
         bg="dark"
         expand="lg"
         className="justify-content-between"
-        style={{ marginBottom: 50 }}
+        // style={{ marginBottom: 20 }}
       >
         <Navbar.Brand href="/" style={{ marginLeft: 20 }}>
           <img
