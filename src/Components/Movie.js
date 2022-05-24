@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Likes from "./Likes";
 
 function Movie(props) {
   // console.log(props);
@@ -11,8 +12,24 @@ function Movie(props) {
   const releaseDate = props.info.release_date;
   const year = releaseDate.slice(0, 4);
   const image = "https://image.tmdb.org/t/p/w500/" + props.info.poster_path;
-  console.log("title", title);
-  //   const style = { color: "red", backgroundColor: "blue"  };
+  const vote = props.info.vote_average;
+
+  function Score(props) {
+    // console.log(props);
+    switch (true) {
+      case props.vote < 4:
+        return <p>bad</p>;
+
+      case props.vote >= 4 && props.vote < 7:
+        return <p>meh</p>;
+
+      case props.vote >= 7:
+        return <p>great</p>;
+
+      default:
+        return <p>no rating</p>;
+    }
+  }
 
   return (
     <>
@@ -24,9 +41,11 @@ function Movie(props) {
           <Link to={`${id}`} state={info}>
             <Card.Img variant="top" src={image} />
           </Link>
-          <Card.Title style={{ fontWeight: 200, paddingTop: 5 }}>
-            {title} ({year})
-          </Card.Title>
+          {/* <Card.Title style={{ fontWeight: 200, paddingTop: 5 }}>
+            {title} ({year}){<score vote={5} />}
+          </Card.Title> */}
+          <Likes />
+          <Score vote={vote} />
         </Card>
       </Col>
     </>

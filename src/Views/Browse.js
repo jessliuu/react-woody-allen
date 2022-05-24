@@ -43,6 +43,7 @@ const Browse = () => {
         {movies &&
           movies.map((movie) => {
             // const { original_title, id  } = movie;
+
             return <Movie info={movie} />;
           })}
       </Row>
