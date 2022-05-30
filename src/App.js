@@ -12,24 +12,27 @@ import { MovieContextProvider } from "./Contexts/MovieContext";
 // import Movies from "./Components/Movies";
 import Navigation from "./Components/Navbar/Navbar.js";
 import React from "react";
+import { AuthContextProvider } from "./Contexts/AuthContext";
 
 function App() {
   // <Browse />;
 
   return (
     <div className="App">
-      <Navigation />
-      <MovieContextProvider>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/discuss" element={<Discuss />} />
-          <Route path="/browse" element={<Browse />} />
-          <Route path="/browse/:title" element={<More />} />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="*" element={<NoMatch />} />
-        </Routes>
-      </MovieContextProvider>
+      <AuthContextProvider>
+        <Navigation />
+        <MovieContextProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/discuss" element={<Discuss />} />
+            <Route path="/browse" element={<Browse />} />
+            <Route path="/browse/:title" element={<More />} />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="*" element={<NoMatch />} />
+          </Routes>
+        </MovieContextProvider>
+      </AuthContextProvider>
     </div>
   );
 }

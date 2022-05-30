@@ -1,18 +1,31 @@
-import React, { useState } from "react";
-import MyButton from "../Components/MyButton/MyButton.js";
+import React, { useState, useContext } from "react";
+import MyButton from "../Components/buttons/MyButton.js";
 import Likes from "../Components/Likes";
 import { Form, Row } from "react-bootstrap";
+import { AuthContext } from "../Contexts/AuthContext.js";
+import { useNavigate } from "react-router-dom";
 
 function LogIn() {
-  // const [user, setUser] = useState(null);
-  // const login = () => {
-  //   setUser({ userName: "Raul", likes : 2 });
-  //   console.log(user);
-  // };
+  const redirectTo = useNavigate();
+  const { user, setUser } = useContext(AuthContext);
+  const login = (e) => {
+    e.preventDefault();
+    setUser({ userName: "Raul" });
+    console.log(user.userName);
+    redirectTo("/discuss");
+    // return <p>You have logged in</p>;
+  };
+
+  const logout = () => {
+    setUser(null);
+  };
   return (
     <div>
       <Row className="gx-5 gy-2 " xs={1} md={2}>
-        <Form>
+        <MyButton message={"Log in"} login={login} />
+
+        {/* WHY DOESN'T MYBUTTON WORK BELOW?!?!?! */}
+        {/* <Form>
           <Form.Group className="mb-3">
             <Form.Label for="exampleEmail">Email</Form.Label>
             <Form.Control
@@ -30,11 +43,39 @@ function LogIn() {
               id="examplePassword"
               placeholder="required"
             />
-            <MyButton message="Log in" />
+            <MyButton message={"Log in"} login={login} />
           </Form.Group>
-        </Form>
+        </Form> */}
 
-        <div>
+        {/* {user ? (
+          <button v onClick={logout}>
+            Log Out
+          </button>
+        ) : (
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label for="exampleEmail">Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                id="exampleEmail"
+                placeholder="john.smith@mail.com"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label for="examplePassword">Password</Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                id="examplePassword"
+                placeholder="required"
+              />
+              <MyButton message="Log in" login={login} />
+            </Form.Group>
+          </Form>
+        )} */}
+
+        {/* <div>
           <h3>Don't have an account? Register here:</h3>
           <Form className="mx-3">
             <Form.Group className="mb-3">
@@ -48,7 +89,7 @@ function LogIn() {
             </Form.Group>
           </Form>
           <MyButton message="Register" />
-        </div>
+        </div> */}
       </Row>
     </div>
   );

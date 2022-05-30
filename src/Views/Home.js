@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./Home.css";
-import MyButton from "../Components/MyButton/MyButton";
+import MyButton from "../Components/buttons/MyButton.js";
 
 function Home() {
   return (
