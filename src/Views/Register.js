@@ -17,8 +17,13 @@ function Register() {
   const { register } = useContext(AuthContext);
   const handleRegister = (e) => {
     e.preventDefault();
-
-    register(email, password);
+    if (email.includes("@")) {
+      console.log("good");
+      register(email, password);
+    } else {
+      console.log("invalid");
+      // return <p>Invalid email or password.</p>;
+    }
   };
 
   return (

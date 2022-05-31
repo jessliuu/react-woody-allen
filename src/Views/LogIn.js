@@ -1,37 +1,45 @@
 import React, { useState, useContext } from "react";
 import MyButton from "../Components/buttons/MyButton.js";
 import Likes from "../Components/Likes";
-import { Form, Row } from "react-bootstrap";
+import { Form, Row, Button } from "react-bootstrap";
 import { AuthContext } from "../Contexts/AuthContext.js";
 import { useNavigate, Link } from "react-router-dom";
 
 function LogIn() {
-  const redirectTo = useNavigate();
-  const { user, setUser } = useContext(AuthContext);
-  const login = () => {
-    setUser({ userName: "Raul" });
-    console.log(user.userName);
-    redirectTo("/discuss");
-    // return <p>You have logged in</p>;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
   };
 
-  const logout = () => {
-    setUser(null);
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
   };
+
+  const { login } = useContext(AuthContext);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    login(email, password);
+    return <p>You have logged in</p>;
+  };
+
   return (
     <div>
       <Row className="gx-5 gy-2 " xs={1} md={2}>
-        <MyButton message={"Log in"} login={login} />
+        {/* <MyButton message={"Log in"} login={login} /> */}
 
         {/* WHY DOESN'T MYBUTTON WORK BELOW?!?!?! */}
-        {/* <Form>
+        <Form onSubmit={handleLogin}>
           <Form.Group className="mb-3">
             <Form.Label for="exampleEmail">Email</Form.Label>
             <Form.Control
               type="email"
               name="email"
               id="exampleEmail"
+              value={email}
               placeholder="john.smith@mail.com"
+              onChange={handleEmailChange}
             />
           </Form.Group>
           <Form.Group className="mb-3">
@@ -40,11 +48,13 @@ function LogIn() {
               type="password"
               name="password"
               id="examplePassword"
+              value={password}
               placeholder="required"
+              onChange={handlePasswordChange}
             />
-            <MyButton message={"Log in"} login={login} />
+            <Button type="submit" message={"Log in"} />
           </Form.Group>
-        </Form> */}
+        </Form>
 
         {/* {user ? (
           <button v onClick={logout}>

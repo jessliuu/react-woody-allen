@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { MovieContext } from "../Contexts/MovieContext";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Card, Container } from "react-bootstrap";
 import MyButton from "../Components/buttons/MyButton.js";
+import { Navigate } from "react-router-dom";
 
 function More() {
   // console.log(props);
@@ -39,16 +40,17 @@ function More() {
   const backdrop = "https://image.tmdb.org/t/p/w500/" + result.backdrop_path;
   const overview = result.overview;
   const runtime = result.runtime;
+  const redirectTo = useNavigate();
 
   return (
     <Container className="fluid mt-2">
-      <h2>{selectedMovie}</h2>
+      <h2>{title}</h2>
       <Card.Img variant="top" src={backdrop} />
       <p>
         Overview: &#160;{overview} &#160;&#40;{runtime}&#160;mins&#41;
       </p>
       <p style={{ fontSize: "medium" }}>{listGenres}</p>
-      <MyButton message="Back to browse" />
+      <MyButton message="Back to browse" onClick={redirectTo("/browse")} />
     </Container>
   );
 }
