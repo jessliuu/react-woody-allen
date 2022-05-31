@@ -13,7 +13,7 @@ function Navigation() {
         className="justify-content-between"
         // style={{ marginBottom: 20 }}
       >
-        <Navbar.Brand href="/" style={{ marginLeft: 20 }}>
+        {/* <Link to="/" style={{ marginLeft: 20 }}>
           <img
             src={logo}
             width="100"
@@ -21,7 +21,7 @@ function Navigation() {
             className="d-inline-block align-top bg-light rounded"
             alt="logo"
           />
-        </Navbar.Brand>
+        <Link> */}
         <Navbar.Toggle
           aria-controls="basic-navbar-nav"
           style={{
@@ -34,18 +34,18 @@ function Navigation() {
           style={{ flexGrow: 0, marginRight: 20 }}
         >
           <Nav className="me-auto">
-            <Nav.Link href="/" style={{ color: "white" }}>
+            <Link to="/" style={{ color: "white" }}>
               Home
-            </Nav.Link>
-            <Nav.Link href="/browse" style={{ color: "white" }}>
+            </Link>
+            <Link to="/browse" style={{ color: "white" }}>
               Browse
-            </Nav.Link>
-            <Nav.Link href="/discuss" style={{ color: "white" }}>
+            </Link>
+            <Link to="/discuss" style={{ color: "white" }}>
               Discuss
-            </Nav.Link>
-            <Nav.Link href="/login" style={{ color: "white" }}>
+            </Link>
+            <Link to="/login" style={{ color: "white" }}>
               Login
-            </Nav.Link>
+            </Link>
 
             {/* <NavDropdown
                 title="User"

@@ -14,7 +14,7 @@ const Browse = () => {
 
   return (
     <>
-      {user && <h2>Good to see you, {user}</h2>}
+      {user && <h2>Good to see you, {user.userName}</h2>}
       <Row className="gx-0 gy-0 " xs={1} md={4} style={{ marginTop: 20 }}>
         {movies &&
           movies.map((movie) => {

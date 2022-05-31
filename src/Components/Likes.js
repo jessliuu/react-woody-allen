@@ -12,6 +12,9 @@ function Likes() {
   const handleClickLike = () => {
     setCount(count + 1);
     console.log(count);
+    if (count === 1) {
+      setCount(0);
+    }
   };
 
   // useEffect(() => {});

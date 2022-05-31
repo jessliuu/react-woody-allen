@@ -13,7 +13,8 @@ import { MovieContextProvider } from "./Contexts/MovieContext";
 import Navigation from "./Components/Navbar/Navbar.js";
 import React from "react";
 import { AuthContextProvider } from "./Contexts/AuthContext";
-
+import ProtectedRoute from "./Components/ProtectedRoute";
+import { app } from "./config.js";
 function App() {
   // <Browse />;
 
@@ -24,7 +25,14 @@ function App() {
         <MovieContextProvider>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/discuss" element={<Discuss />} />
+            <Route
+              path="/discuss"
+              element={
+                <ProtectedRoute>
+                  <Discuss />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/browse" element={<Browse />} />
             <Route path="/browse/:title" element={<More />} />
             <Route path="/login" element={<LogIn />} />

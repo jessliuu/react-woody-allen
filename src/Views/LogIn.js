@@ -3,13 +3,12 @@ import MyButton from "../Components/buttons/MyButton.js";
 import Likes from "../Components/Likes";
 import { Form, Row } from "react-bootstrap";
 import { AuthContext } from "../Contexts/AuthContext.js";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function LogIn() {
   const redirectTo = useNavigate();
   const { user, setUser } = useContext(AuthContext);
-  const login = (e) => {
-    e.preventDefault();
+  const login = () => {
     setUser({ userName: "Raul" });
     console.log(user.userName);
     redirectTo("/discuss");
@@ -75,9 +74,11 @@ function LogIn() {
           </Form>
         )} */}
 
-        {/* <div>
-          <h3>Don't have an account? Register here:</h3>
-          <Form className="mx-3">
+        <div>
+          <h3>
+            Don't have an account? Register <Link to="/register">here:</Link>
+          </h3>
+          {/* <Form className="mx-3">
             <Form.Group className="mb-3">
               <Form.Label for="exampleEmail">Email</Form.Label>
               <Form.Control
@@ -88,8 +89,8 @@ function LogIn() {
               />
             </Form.Group>
           </Form>
-          <MyButton message="Register" />
-        </div> */}
+          <MyButton message="Register" /> */}
+        </div>
       </Row>
     </div>
   );
