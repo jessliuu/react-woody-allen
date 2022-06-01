@@ -1,9 +1,13 @@
 import React from "react";
 
 import "./Home.css";
-import MyButton from "../Components/buttons/MyButton.js";
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const redirectTo = useNavigate();
+  const handleStartBrowsing = () => redirectTo("/browse");
+
   return (
     <div>
       <div className="home-container fluid">
@@ -17,7 +21,9 @@ function Home() {
           provident tempore maxime distinctio iure, nulla autem accusantium?
         </p>
         <p></p>
-        <MyButton message="Start browsing" />
+        <Button variant="outline-light" onClick={handleStartBrowsing}>
+          Start browsing
+        </Button>
       </div>
     </div>
   );

@@ -8,6 +8,8 @@ import { useNavigate, Link } from "react-router-dom";
 function LogIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+  const { errorfromLogin } = useContext(AuthContext);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -20,8 +22,12 @@ function LogIn() {
   const { login } = useContext(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
-    login(email, password);
-    return <p>You have logged in</p>;
+    if (email.includes("@") && password.length > 5) {
+      login(email, password);
+      setError(null);
+    } else {
+      setError("Invalid login. Please try again.");
+    }
   };
 
   return (
@@ -29,10 +35,11 @@ function LogIn() {
       <Row className="gx-5 gy-2 " xs={1} md={2}>
         {/* <MyButton message={"Log in"} login={login} /> */}
 
-        {/* WHY DOESN'T MYBUTTON WORK BELOW?!?!?! */}
         <Form onSubmit={handleLogin}>
-          <Form.Group className="mb-3">
-            <Form.Label for="exampleEmail">Email</Form.Label>
+          <Form.Group className="m-3">
+            <Form.Label for="exampleEmail" className="h3">
+              Email
+            </Form.Label>
             <Form.Control
               type="email"
               name="email"
@@ -42,8 +49,10 @@ function LogIn() {
               onChange={handleEmailChange}
             />
           </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label for="examplePassword">Password</Form.Label>
+          <Form.Group className="m-3">
+            <Form.Label for="examplePassword" className="h3">
+              Password
+            </Form.Label>
             <Form.Control
               type="password"
               name="password"
@@ -52,54 +61,20 @@ function LogIn() {
               placeholder="required"
               onChange={handlePasswordChange}
             />
-            <Button type="submit" message={"Log in"} />
+            <Button type="submit" variant="outline-light" className="m-3">
+              Log In
+            </Button>
           </Form.Group>
         </Form>
 
-        {/* {user ? (
-          <button v onClick={logout}>
-            Log Out
-          </button>
-        ) : (
-          <Form>
-            <Form.Group className="mb-3">
-              <Form.Label for="exampleEmail">Email</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                id="exampleEmail"
-                placeholder="john.smith@mail.com"
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label for="examplePassword">Password</Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                id="examplePassword"
-                placeholder="required"
-              />
-              <MyButton message="Log in" login={login} />
-            </Form.Group>
-          </Form>
-        )} */}
-
         <div>
-          <h3>
-            Don't have an account? Register <Link to="/register">here:</Link>
-          </h3>
-          {/* <Form className="mx-3">
-            <Form.Group className="mb-3">
-              <Form.Label for="exampleEmail">Email</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                id="exampleEmail"
-                placeholder="john.smith@mail.com"
-              />
-            </Form.Group>
-          </Form>
-          <MyButton message="Register" /> */}
+          {error && <p>{error}</p>}
+          {errorfromLogin && <p>{errorfromLogin}</p>}
+        </div>
+        <div>
+          <p>
+            Don't have an account? Register <Link to="/register">here</Link>
+          </p>
         </div>
       </Row>
     </div>

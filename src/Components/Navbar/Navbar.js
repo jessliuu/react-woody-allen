@@ -1,3 +1,4 @@
+import { Button } from "react-bootstrap";
 import React, { useContext } from "react";
 import { Navbar, NavDropdown, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -22,6 +23,7 @@ function Navigation() {
           height="max"
           className="d-inline-block align-top bg-light rounded"
           alt="logo"
+          style={{ marginLeft: 15 }}
         />
         {/* <Link> */}
         <Navbar.Toggle
@@ -45,15 +47,20 @@ function Navigation() {
             <Link to="/discuss" className="p-2" style={{ color: "white" }}>
               Discuss
             </Link>
+            {user && (
+              <Link to="/favorites" className="p-2" style={{ color: "white" }}>
+                Favorites
+              </Link>
+            )}
             {!user && (
               <Link to="/login" className="p-2" style={{ color: "white" }}>
                 Login
               </Link>
             )}
             {user && (
-              <button v onClick={logout}>
+              <Button variant="outline-light" onClick={logout}>
                 Log Out
-              </button>
+              </Button>
             )}
 
             {/* <NavDropdown

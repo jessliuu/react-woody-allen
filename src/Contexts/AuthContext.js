@@ -13,6 +13,10 @@ export const AuthContext = createContext();
 export const AuthContextProvider = (props) => {
   const [user, setUser] = useState("");
 
+  const [errorfromReg, setErrorfromReg] = useState(null);
+
+  const [errorfromLogin, setErrorfromLogin] = useState(null);
+
   const redirectTo = useNavigate();
 
   const login = async (email, password) => {
@@ -25,11 +29,13 @@ export const AuthContextProvider = (props) => {
       console.log("userCredential", userCredential);
       setUser(userCredential.user);
       redirectTo("/");
+      setErrorfromLogin(null);
     } catch (error) {
       console.log(error);
       setUser(null);
       const errorCode = error.code;
       const errorMessage = error.message;
+      setErrorfromLogin(errorMessage);
     }
   };
 
@@ -44,20 +50,21 @@ export const AuthContextProvider = (props) => {
       console.log("userCredential", userCredential);
       setUser(userCredential.user);
       redirectTo("/");
+      setErrorfromReg(null);
     } catch (error) {
       console.log(error);
       setUser(null);
       const errorCode = error.code;
       const errorMessage = error.message;
-      // ..
+      setErrorfromReg(errorMessage);
     }
   };
 
   const checkIfLoggedIn = () => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const uid = user.uid;
-        setUser(user);
+    onAuthStateChanged(auth, (u) => {
+      if (u) {
+        const uid = u.uid;
+        setUser(u);
       } else {
         setUser(null);
       }
@@ -80,7 +87,17 @@ export const AuthContextProvider = (props) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, login, logout, register }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        setUser,
+        errorfromReg,
+        errorfromLogin,
+        login,
+        logout,
+        register,
+      }}
+    >
       {props.children}
     </AuthContext.Provider>
   );

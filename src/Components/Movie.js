@@ -45,7 +45,7 @@ function Movie(props) {
             {title} ({year}){<score vote={5} />}
           </Card.Title> */}
           <Likes />
-          <Score vote={vote} />
+          {/* <Score vote={vote} /> */}
         </Card>
       </Col>
     </>

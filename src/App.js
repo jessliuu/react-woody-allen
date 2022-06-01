@@ -7,6 +7,7 @@ import LogIn from "./Views/LogIn.js";
 import NoMatch from "./Views/NoMatch.js";
 import More from "./Views/More.js";
 import Register from "./Views/Register.js";
+import Favorites from "./Views/Favorites.js";
 import { MovieContextProvider } from "./Contexts/MovieContext";
 
 // import Movies from "./Components/Movies";
@@ -30,6 +31,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Discuss />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/favorites"
+              element={
+                <ProtectedRoute>
+                  <Favorites />
                 </ProtectedRoute>
               }
             />

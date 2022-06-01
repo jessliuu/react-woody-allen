@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
 import { MovieContext } from "../Contexts/MovieContext";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { Card, Container } from "react-bootstrap";
+import { Card, Container, Button } from "react-bootstrap";
 import MyButton from "../Components/buttons/MyButton.js";
-import { Navigate } from "react-router-dom";
 
 function More() {
   // console.log(props);
@@ -41,6 +40,7 @@ function More() {
   const overview = result.overview;
   const runtime = result.runtime;
   const redirectTo = useNavigate();
+  const handleBackToBrowse = () => redirectTo("/browse");
 
   return (
     <Container className="fluid mt-2">
@@ -50,7 +50,18 @@ function More() {
         Overview: &#160;{overview} &#160;&#40;{runtime}&#160;mins&#41;
       </p>
       <p style={{ fontSize: "medium" }}>{listGenres}</p>
-      <MyButton message="Back to browse" onClick={redirectTo("/browse")} />
+      {/* Option 1: use redirectTo as a callback  */}
+      {/* <Button
+        variant="outline-light"
+        onClick={() => redirectTo("/", { replace: true })}
+      /> */}
+
+      {/* Option 2: use redirectTo in another function */}
+      <Button variant="outline-light" onClick={handleBackToBrowse}>
+        Back to browse
+      </Button>
+
+      {/* <MyButton message="Back to browse" onClick={redirectTo("/browse")} /> */}
     </Container>
   );
 }
