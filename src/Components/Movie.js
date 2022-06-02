@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Likes from "./Likes";
+import { AuthContext } from "../Contexts/AuthContext";
 
 function Movie(props) {
   // console.log(props);
@@ -13,6 +14,8 @@ function Movie(props) {
   const year = releaseDate.slice(0, 4);
   const image = "https://image.tmdb.org/t/p/w500/" + props.info.poster_path;
   const vote = props.info.vote_average;
+
+  const { user } = useContext(AuthContext);
 
   function Score(props) {
     // console.log(props);
@@ -44,7 +47,7 @@ function Movie(props) {
           {/* <Card.Title style={{ fontWeight: 200, paddingTop: 5 }}>
             {title} ({year}){<score vote={5} />}
           </Card.Title> */}
-          <Likes />
+          {user && <Likes info={info} />}
           {/* <Score vote={vote} /> */}
         </Card>
       </Col>
