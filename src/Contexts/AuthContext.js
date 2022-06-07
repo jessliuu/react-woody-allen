@@ -50,6 +50,7 @@ export const AuthContextProvider = (props) => {
       );
       console.log("userCredential", userCredential);
       setUser(userCredential.user);
+
       redirectTo("/");
       setErrorfromReg(null);
     } catch (error) {

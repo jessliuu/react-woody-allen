@@ -19,7 +19,7 @@ function Discuss() {
   const [chatMsg, setChatMsg] = useState();
 
   const getMessages = () => {
-    const q = query(collection(db, "chat"), orderBy("date", "desc"), limit(3));
+    const q = query(collection(db, "chat"), orderBy("date", "desc"), limit(5));
     onSnapshot(q, (querySnapshot) => {
       const myMessages = [];
       querySnapshot.forEach((doc) => {
@@ -35,6 +35,10 @@ function Discuss() {
     //   myMessages.push(doc.data());
     // });
     // setMessages(myMessages);
+  };
+
+  const messageDate = (time) => {
+    return new Date(time * 1000).toLocaleString();
   };
 
   useEffect(() => {
@@ -80,10 +84,12 @@ function Discuss() {
       {messages &&
         messages.map((msg, index) => {
           return (
-            <div key={index}>
-              <p>{msg.user}</p>
-              <p>{msg.message}</p>
-              <p>{msg.date.seconds}</p>
+            <div className="chatInputWrapper">
+              <div key={index} className="msg">
+                <p>{messageDate(msg.date.seconds)}</p>
+                <p>{msg.user}</p>
+                <p>{msg.message}</p>
+              </div>
             </div>
           );
         })}

@@ -1,9 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Card, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Likes from "./Likes";
 import { AuthContext } from "../Contexts/AuthContext";
-
+import {
+  doc,
+  setDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+  query,
+  collection,
+  where,
+  onSnapshot,
+  documentId,
+} from "firebase/firestore";
+import { db } from "../config";
 function Movie(props) {
   // console.log(props);
 
@@ -14,8 +26,29 @@ function Movie(props) {
   const year = releaseDate.slice(0, 4);
   const image = "https://image.tmdb.org/t/p/w500/" + props.info.poster_path;
   const vote = props.info.vote_average;
-
+  const [isLiked, setIsLiked] = useState(false);
   const { user } = useContext(AuthContext);
+  const getLikes = () => {
+    const q = query(
+      collection(db, "likes"),
+      where(documentId(), "==", id.toString())
+    );
+    onSnapshot(q, (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if (doc.data().userId.includes(user.uid)) {
+          console.log("is liked");
+          setIsLiked(true);
+        } else {
+          console.log("not liked");
+          setIsLiked(false);
+        }
+      });
+    });
+  };
+
+  useEffect(() => {
+    getLikes();
+  }, [user]);
 
   function Score(props) {
     // console.log(props);
@@ -47,7 +80,7 @@ function Movie(props) {
           {/* <Card.Title style={{ fontWeight: 200, paddingTop: 5 }}>
             {title} ({year}){<score vote={5} />}
           </Card.Title> */}
-          {user && <Likes info={info} />}
+          {user && <Likes info={info} isLiked={isLiked} />}
           {/* <Score vote={vote} /> */}
         </Card>
       </Col>
