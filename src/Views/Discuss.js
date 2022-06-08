@@ -12,6 +12,7 @@ import {
   limit,
 } from "firebase/firestore";
 import { Button } from "react-bootstrap";
+import { fontSize } from "@mui/system";
 
 function Discuss() {
   const { user } = useContext(AuthContext);
@@ -85,10 +86,14 @@ function Discuss() {
         messages.map((msg, index) => {
           return (
             <div className="chatInputWrapper">
-              <div key={index} className="msg">
+              <div key={index} className="chat msg">
                 <p>{messageDate(msg.date.seconds)}</p>
-                <p>{msg.user}</p>
-                <p>{msg.message}</p>
+                <p>
+                  <span style={{ color: "purple" }}>{msg.user}</span> wrote:{" "}
+                  <span style={{ fontSize: "medium", fontWeight: "600" }}>
+                    {msg.message}
+                  </span>
+                </p>
               </div>
             </div>
           );

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Card, Col, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Likes from "./Likes";
 import { AuthContext } from "../Contexts/AuthContext";
 import {
@@ -17,13 +17,9 @@ import {
 } from "firebase/firestore";
 import { db } from "../config";
 function Movie(props) {
-  // console.log(props);
-
   const info = props.info;
   const id = props.info.id;
   const title = props.info.original_title;
-  const releaseDate = props.info.release_date;
-  const year = releaseDate.slice(0, 4);
   const image = "https://image.tmdb.org/t/p/w500/" + props.info.poster_path;
   const vote = props.info.vote_average;
   const [isLiked, setIsLiked] = useState(false);
@@ -50,22 +46,28 @@ function Movie(props) {
     getLikes();
   }, [user]);
 
-  function Score(props) {
-    // console.log(props);
-    switch (true) {
-      case props.vote < 4:
-        return <p>bad</p>;
+  // function Score(props) {
+  //   // console.log(props);
+  //   switch (true) {
+  //     case props.vote < 2:
+  //       return <p>&#9733;&#9734;&#9734;&#9734;&#9734;</p>;
 
-      case props.vote >= 4 && props.vote < 7:
-        return <p>meh</p>;
+  //     case props.vote >= 2 && props.vote < 4:
+  //       return <p>&#9733;&#9733;&#9734;&#9734;&#9734;</p>;
 
-      case props.vote >= 7:
-        return <p>great</p>;
+  //     case props.vote >= 4 && props.vote < 6:
+  //       return <p>&#9733;&#9733;&#9733;&#9734;&#9734;</p>;
+  //     case props.vote >= 6 && props.vote < 8:
+  //       return <p>&#9733;&#9733;&#9733;&#9733;&#9734;</p>;
 
-      default:
-        return <p>no rating</p>;
-    }
-  }
+  //     case props.vote >= 8:
+  //       return <p>&#9733;&#9733;&#9733;&#9733;&#9733;</p>;
+
+  //     default:
+  //       return <p>no rating</p>;
+  //   }
+  // }
+  const [isShown, setIsShown] = useState(false);
 
   return (
     <>
@@ -73,15 +75,20 @@ function Movie(props) {
         <Card
           style={{ width: "18rem", border: "none" }}
           className="shadow-sm p-3 mb-5 bg-white rounded d-flex justify-content-between"
+          onMouseOver={() => setIsShown(true)}
+          onMouseLeave={() => setIsShown(false)}
         >
-          <Link to={`${id}`} state={info}>
+          <div>
             <Card.Img variant="top" src={image} />
-          </Link>
-          {/* <Card.Title style={{ fontWeight: 200, paddingTop: 5 }}>
-            {title} ({year}){<score vote={5} />}
-          </Card.Title> */}
+            {/* {isShown && (
+              <div className="overlay">
+                <Link to={`/browse/${id}`} state={info}>
+                  <Button variant="light">Read More</Button>
+                </Link>
+              </div>
+            )} */}
+          </div>
           {user && <Likes info={info} isLiked={isLiked} />}
-          {/* <Score vote={vote} /> */}
         </Card>
       </Col>
     </>

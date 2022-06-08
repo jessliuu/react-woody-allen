@@ -34,14 +34,14 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route
+            {/* <Route
               path="/favorites"
               element={
                 <ProtectedRoute>
                   <Favorites />
                 </ProtectedRoute>
               }
-            />
+            /> */}
             <Route path="/browse" element={<Browse />} />
             <Route path="/browse/:title" element={<More />} />
             <Route path="/login" element={<LogIn />} />

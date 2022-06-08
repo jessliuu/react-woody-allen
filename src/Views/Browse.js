@@ -14,7 +14,6 @@ const Browse = () => {
 
   return (
     <>
-      {user && <h2>Good to see you, {user.email}</h2>}
       <Row className="gx-0 gy-0 " xs={1} md={4} style={{ marginTop: 20 }}>
         {movies &&
           movies.map((movie) => {

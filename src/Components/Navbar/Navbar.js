@@ -47,11 +47,11 @@ function Navigation() {
             <Link to="/discuss" className="p-2" style={{ color: "white" }}>
               Discuss
             </Link>
-            {user && (
+            {/* {user && (
               <Link to="/favorites" className="p-2" style={{ color: "white" }}>
                 Favorites
               </Link>
-            )}
+            )} */}
             {!user && (
               <Link to="/login" className="p-2" style={{ color: "white" }}>
                 Login

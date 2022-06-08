@@ -34,17 +34,44 @@ function More() {
     });
 
   const title = result.original_title;
+  const releaseDate = result.release_date;
+  const year = releaseDate.slice(0, 4);
   const genres = result.genres;
   const listGenres = genres.map((genre) => ` • ${genre.name}`);
   const backdrop = "https://image.tmdb.org/t/p/w500/" + result.backdrop_path;
   const overview = result.overview;
   const runtime = result.runtime;
+  const vote = result.vote_average;
   const redirectTo = useNavigate();
   const handleBackToBrowse = () => redirectTo("/browse");
 
+  function Score(result) {
+    console.log("result", result);
+    switch (true) {
+      case result.vote_average < 2:
+        return <p>&#9733;&#9734;&#9734;&#9734;&#9734;</p>;
+
+      case result.vote_average >= 2 && result.vote_average < 4:
+        return <p>&#9733;&#9733;&#9734;&#9734;&#9734;</p>;
+
+      case result.vote_average >= 4 && result.vote_average < 6:
+        return <p>&#9733;&#9733;&#9733;&#9734;&#9734;</p>;
+      case result.vote_average >= 6 && result.vote_average < 8:
+        return <p>&#9733;&#9733;&#9733;&#9733;&#9734;</p>;
+
+      case result.vote_average >= 8:
+        return <p>&#9733;&#9733;&#9733;&#9733;&#9733;</p>;
+
+      default:
+        return <p>no rating</p>;
+    }
+  }
+
   return (
     <Container className="fluid mt-2">
-      <h2>{title}</h2>
+      <h2>
+        {title} ({year}) {result && <Score vote_average={vote} />}
+      </h2>
       <Card.Img variant="top" src={backdrop} />
       <p>
         Overview: &#160;{overview} &#160;&#40;{runtime}&#160;mins&#41;
