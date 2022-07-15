@@ -70,7 +70,7 @@ function More() {
   return (
     <Container className="fluid mt-2">
       <h2>
-        {title} ({year}) {result && <Score vote_average={vote} />}
+        {title} ({year}){/* {result && <Score vote_average={vote} />} */}
       </h2>
       <Card.Img variant="top" src={backdrop} />
       <p>

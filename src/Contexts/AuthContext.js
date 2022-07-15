@@ -50,7 +50,7 @@ export const AuthContextProvider = (props) => {
       );
       console.log("userCredential", userCredential);
       setUser(userCredential.user);
-
+      createUserDoc();
       redirectTo("/");
       setErrorfromReg(null);
     } catch (error) {
@@ -77,9 +77,9 @@ export const AuthContextProvider = (props) => {
     }
   };
 
-  useEffect(() => {
-    createUserDoc();
-  }, [register]);
+  // useEffect(() => {
+  //   createUserDoc();
+  // }, [register]);
 
   const checkIfLoggedIn = () => {
     onAuthStateChanged(auth, (u) => {

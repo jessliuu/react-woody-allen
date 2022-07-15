@@ -12,6 +12,7 @@ import { MovieContextProvider } from "./Contexts/MovieContext";
 
 // import Movies from "./Components/Movies";
 import Navigation from "./Components/Navbar/Navbar.js";
+import Navbar2 from "./Components/Navbar/Navbar2.js";
 import React from "react";
 import { AuthContextProvider } from "./Contexts/AuthContext";
 import ProtectedRoute from "./Components/ProtectedRoute";
@@ -22,7 +23,8 @@ function App() {
   return (
     <div className="App">
       <AuthContextProvider>
-        <Navigation />
+        <Navbar2 />
+        {/* <Navigation /> */}
         <MovieContextProvider>
           <Routes>
             <Route path="/" element={<Home />} />

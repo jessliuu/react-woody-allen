@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import Movie from "../Components/Movie";
+import Movie from "../Components/Movie/Movie";
 import { Row, Button } from "react-bootstrap";
 import { MovieContext } from "../Contexts/MovieContext";
 import { AuthContext } from "../Contexts/AuthContext";
